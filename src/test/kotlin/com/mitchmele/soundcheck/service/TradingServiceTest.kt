@@ -22,8 +22,7 @@ class TradingServiceTest {
                         symbol = "ABC",
                         tradePrice = 20.01
                 )))
-        val response: ResponseEntity<ExchangeResponse> = ResponseEntity.ok().body(exchangeResponse)
-        whenever(mockExchangeClient.getTradeDetails(any())) doReturn response
+        whenever(mockExchangeClient.getTradeDetails(any())) doReturn exchangeResponse
 
         val expected = TradeCheckResponse(true)
 
@@ -37,8 +36,7 @@ class TradingServiceTest {
     fun `checkForTrades - returns response with FALSE if response contains no trades`() {
 
         val exchangeResponse = ExchangeResponse(emptyList())
-        val response: ResponseEntity<ExchangeResponse> = ResponseEntity.ok().body(exchangeResponse)
-        whenever(mockExchangeClient.getTradeDetails(any())) doReturn response
+        whenever(mockExchangeClient.getTradeDetails(any())) doReturn exchangeResponse
 
         val expected = TradeCheckResponse(false)
 

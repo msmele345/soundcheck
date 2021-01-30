@@ -2,16 +2,20 @@ package com.mitchmele.soundcheck.service
 
 import com.mitchmele.soundcheck.model.ExchangeProperties
 import com.mitchmele.soundcheck.model.ExchangeResponse
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
 
 @Service
 class ExchangeClient(
-        val exchangeProperties: ExchangeProperties
+        private val restResolver: RestResolver,
+        private val exchangeProperties: ExchangeProperties,
+        private val interstellarRestTemplate: RestTemplate,
         //restResolver or error handler that takes a function to resolve to ResponseEntity
 ) {
 
-    fun getTradeDetails(symbol: String): ResponseEntity<ExchangeResponse> {
-        return ResponseEntity.badRequest().build();
+    fun getTradeDetails(symbol: String): ExchangeResponse? {
+        //getForEntity
+        return null
     }
+
 }

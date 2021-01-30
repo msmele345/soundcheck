@@ -6,6 +6,8 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
+import java.lang.StringBuilder
+import kotlin.random.Random
 
 class TestUtils {
 
@@ -31,6 +33,17 @@ class TestUtils {
                 content { contentType(MediaType.APPLICATION_JSON) }
                 content { string(jacksonObjectMapper().writeValueAsString(expectation)) }
             }
+        }
+
+        fun getSymbol(): String {
+            val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+            val stringBuilder = StringBuilder().apply {
+                repeat(3) {
+                    append(alphabet[Random.nextInt(25)])
+                }
+            }
+            return stringBuilder.toString().toUpperCase()
         }
     }
 }
